@@ -65,23 +65,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
     methods: {
         jurosSimples(){
-            var url = 'juros-simples.json?capital='+ this.capital + '&taxa=' + this.taxa + '&periodo=' + this.periodo;
-            alert(url);
-            this.loading = true;
-            fetch(url).then((response) => response.json())
-                .then((data) => this.montante = data.montante)
-                .catch((e) => this.error = e)
-                .finally(() => this.loading = false);
+            if(this.capital == '' || this.taxa == '' || this.periodo == '' ){
+                alert("Preencha todos os campos");
+            }
+            else{
+                var url = 'juros-simples.json?capital='+ this.capital + '&taxa=' + this.taxa + '&periodo=' + this.periodo;
+                alert(url);
+                this.loading = true;
+                fetch(url).then((response) => response.json())
+                    .then((data) => this.montante = data.montante)
+                    .catch((e) => this.error = e)
+                    .finally(() => this.loading = false);
+            }
         },
         jurosComposto(){
-            var url = 'juros-composto.json?capital='+ this.capital2 + '&taxa=' + this.taxa2 + '&periodo=' + this.periodo2;
-            alert(url);
-            this.loading = true;
-            fetch(url).then((response) => response.json())
-                .then((data) => this.montante2 = data.montante)
-                .catch((e) => this.error = e)
-                .finally(() => this.loading = false);
-        }
+            if(this.capital2 == '' || this.taxa2 == '' || this.periodo2 == '' ){
+                alert("Preencha todos os campos");
+            }
+            else{
+                var url = 'juros-composto.json?capital='+ this.capital2 + '&taxa=' + this.taxa2 + '&periodo=' + this.periodo2;
+                alert(url);
+                this.loading = true;
+                fetch(url).then((response) => response.json())
+                    .then((data) => this.montante2 = data.montante)
+                    .catch((e) => this.error = e)
+                    .finally(() => this.loading = false);
+            }
     }
   }).mount('#app')
         </script>
